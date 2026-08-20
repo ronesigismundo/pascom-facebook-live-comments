@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Comentários da Live</title>
+    <style>
+      body {
+        width: 360px;
+        min-height: 500px;
+        font-family: system-ui, sans-serif;
+        margin: 0;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+      .actions {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+      button {
+        flex: 1;
+        padding: 6px;
+        font-size: 12px;
+        cursor: pointer;
+      }
+      #list {
+        max-height: 360px;
+        overflow-y: auto;
+        border-top: 1px solid #ddd;
+      }
+      .comment {
+        padding: 6px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 12px;
+      }
+      .comment .author {
+        font-weight: bold;
+      }
+      .comment .time {
+        color: #888;
+        font-size: 11px;
+      }
+      .empty {
+        color: #888;
+        font-size: 12px;
+        padding: 12px 0;
+        text-align: center;
+      }
+      .config {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+      }
+      .config-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+      .config-row label {
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .url-add {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 6px;
+      }
+      .url-add input {
+        flex: 1;
+        font-size: 12px;
+        padding: 4px 6px;
+      }
+      .url-add button {
+        flex: none;
+        padding: 4px 10px;
+      }
+      #urlList {
+        max-height: 100px;
+        overflow-y: auto;
+      }
+      .url-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 11px;
+        padding: 3px 0;
+        gap: 6px;
+      }
+      .url-item span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .url-item button {
+        flex: none;
+        padding: 1px 6px;
+        font-size: 11px;
+      }
+      .hint {
+        color: #888;
+        font-size: 11px;
+        margin: 0 0 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="config">
+      <div class="config-row">
+        <label for="enabledToggle">Extensão ativa</label>
+        <input type="checkbox" id="enabledToggle" checked />
+      </div>
+      <p class="hint">
+        URLs permitidas (adicione ao menos uma; vazio = extensão não atua em
+        nenhuma página):
+      </p>
+      <div class="url-add">
+        <input type="text" id="urlInput" placeholder="ex: facebook.com/suapagina" />
+        <button id="addUrl">Adicionar</button>
+        <button id="addCurrentUrl" title="Adicionar a aba atual">Aba atual</button>
+      </div>
+      <div id="urlList"></div>
+    </div>
+    <h1>Comentários capturados (<span id="count">0</span>)</h1>
+    <div class="actions">
+      <button id="exportJson">Exportar JSON</button>
+      <button id="exportCsv">Exportar CSV</button>
+      <button id="clear">Limpar</button>
+    </div>
+    <div id="list"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
